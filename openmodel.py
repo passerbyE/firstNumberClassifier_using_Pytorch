@@ -50,6 +50,9 @@ result = torch.argmax(predict, axis=1)
 if long - star < 10:
     print(result)
     print(test_label)
+print(result)
+print(test_label)
+
 
 
 whoitWork = torch.mean((result == test_label).to(torch.float))
