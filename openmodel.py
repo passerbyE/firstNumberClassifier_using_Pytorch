@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 import pandas as pd
+import cv2
+
+
 
 
 raw_df = pd.read_csv('mnist.csv')
@@ -25,11 +28,11 @@ train_label = torch.tensor(train_label).to(torch.long).cuda()
 test_feature = torch.tensor(test_feature).to(torch.float).cuda()
 test_label = torch.tensor(test_label).to(torch.long).cuda()
 
-params = torch.load('./modelForOneT.pt')
+params = torch.load('./modetimeONE.pt')
 model = nn.Sequential(
-    nn.Linear(784, 444),
+    nn.Linear(784, 1000),
     nn.ReLU(),
-    nn.Linear(444, 512),
+    nn.Linear(1000, 512),
     nn.ReLU(),
     nn.Linear(512, 512),
     nn.ReLU(),
@@ -50,10 +53,9 @@ result = torch.argmax(predict, axis=1)
 if long - star < 10:
     print(result)
     print(test_label)
-print(result)
-print(test_label)
+
 
 
 
 whoitWork = torch.mean((result == test_label).to(torch.float))
-print('正確率= ', round(whoitWork.item()*100), '%')
+print('正確率= ', whoitWork.item()*100, '%')

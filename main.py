@@ -28,9 +28,9 @@ test_label = torch.tensor(test_label).to(torch.long).cuda()
 #模型本體
 data = torch.rand(1, 784)
 model = nn.Sequential(
-    nn.Linear(784, 444),
+    nn.Linear(784, 1000),
     nn.ReLU(),
-    nn.Linear(444, 512),
+    nn.Linear(1000, 512),
     nn.ReLU(),
     nn.Linear(512, 512),
     nn.ReLU(),
@@ -45,7 +45,7 @@ lossfunction = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(params=model.parameters(), lr=0.0001)
 
 #訓練輪數
-for i in range(500):
+for i in range(150):
     #清空有話器的梯度
     optimizer.zero_grad()
     #訓練
@@ -68,4 +68,4 @@ for i in range(500):
     loss = lossfunction(predict, test_label)
     print(f'測試第{i}輪的損失是= {loss.item()}\t\t正確率是= {test_cc.item()*100}%')
 
-torch.save(model.state_dict(), './modelForOneT.pt')
+torch.save(model.state_dict(), './modetimeONE.pt')
